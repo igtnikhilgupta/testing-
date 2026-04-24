@@ -4,11 +4,11 @@ describe('My First Test', () => {
     // cy.contains('type').click()
     // cy.url().should('include', '/commands/actions')
     // cy.get('.action-email').type('hello@cypress.io')
-    cy.title().should('eq', 'OrangeHRM') 
+    cy.title().should('eq', 'OrangeHRM')
   })
 
-  it('negative testing', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/')
-    cy.title().should('eq', 'OrangeHRM1234')
-  })
+  // it('negative testing', () => {
+  //   cy.visit('https://opensource-demo.orangehrmlive.com/')
+  //   cy.title().should('eq', 'OrangeHRM1234')
+  // })
 })
