@@ -9,21 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
       - name: Checkout
         uses: actions/checkout@v3
 
-      # 2. Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18.18.0   
 
-      # 3. Install dependencies
+      - name: Cache Cypress
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm install
 
-      # 4. Run Cypress tests
       - name: Run Cypress
         run: npx cypress run --browser electron
         env:
