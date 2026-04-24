@@ -1,14 +1,21 @@
-describe('My First Test', () => {
-  it('test1', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/')
-    // cy.contains('type').click()
-    // cy.url().should('include', '/commands/actions')
-    // cy.get('.action-email').type('hello@cypress.io')
-    cy.title().should('eq', 'OrangeHRM')
-  })
+describe('Login Test', () => {
+  it('Login', () => {
 
-  // it('negative testing', () => {
-  //   cy.visit('https://opensource-demo.orangehrmlive.com/')
-  //   cy.title().should('eq', 'OrangeHRM1234')
-  // })
+    cy.visit('https://staging.app.renofms.com/login')
+
+    cy.get('input[name="email"]', { timeout: 10000 })
+      .type(Cypress.env('username'))
+
+    cy.get('input[type="password"]')
+      .type(Cypress.env('password'))
+
+    cy.contains('button', 'Login').click()
+
+    cy.wait(5000) // debug
+
+    cy.screenshot('after-login')
+
+    cy.url().should('not.include', 'signin') // safer
+
+  })
 })
